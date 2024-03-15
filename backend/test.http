@@ -1,0 +1,73 @@
+GET http://localhost:3028/getAuthors
+
+
+####
+
+
+POST http://localhost:3028/createAuthor
+Content-Type: application/json
+
+{
+    "name": "Marco",
+    "surname": "Rossi",
+    "email": "emailprova@email.it",
+    "birthday": "15/15/1994",
+    "avatar": "M"
+}
+
+####
+
+GET http://localhost:3028/getAuthor/65f32cfe367f72ef8b11d98e
+
+####
+
+PATCH http://localhost:3028/updateAuthor/65f32cfe367f72ef8b11d98e
+Content-Type: application/json
+
+{
+    "surname": "Pasc"
+}
+
+####
+
+DELETE http://localhost:3028/deleteAuthor/65f320a920074f7b8b790b9f
+
+####
+
+
+#  !CHIAMATE POST
+
+GET http://localhost:3028/getPosts
+
+####
+
+POST http://localhost:3028/createPost
+Content-Type: application/json
+
+{
+    "category": "Fantasy",
+    "title": "Game of Thrones",
+    "cover": "https://tse1.mm.bing.net/th?id=OIP._HpT0s13C3rre6bD46rIggHaEK&pid=Api&rs=1&c=1&qlt=95&w=195&h=109",
+    "readTime": 1,
+    "author": { "name" : "George R.R. Martin",
+                 "avatar": "M"},
+    "content": "https://it.wikipedia.org/wiki/Il_Trono_di_Spade"
+}
+
+####
+
+GET http://localhost:3028/getPost/65f46681e7a127c70002701d
+
+####
+
+
+PATCH http://localhost:3028/updatePost/65f466abe7a127c700027021
+Content-Type: application/json
+
+{
+    "title" : "Moon"
+}
+
+####
+
+DELETE http://localhost:3028/deletePost/65f466abe7a127c700027021
