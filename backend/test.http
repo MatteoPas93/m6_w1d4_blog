@@ -50,7 +50,7 @@ Content-Type: application/json
     "cover": "https://tse1.mm.bing.net/th?id=OIP._HpT0s13C3rre6bD46rIggHaEK&pid=Api&rs=1&c=1&qlt=95&w=195&h=109",
     "readTime": 1,
     "author": { "name" : "George R.R. Martin",
-                 "avatar": "M"},
+                 "avatar": "https://tse1.mm.bing.net/th?id=OIP.awAiMS1BCAQ2xS2lcdXGlwHaHH&pid=Api&rs=1&c=1&qlt=95&w=125&h=120"},
     "content": "https://it.wikipedia.org/wiki/Il_Trono_di_Spade"
 }
 

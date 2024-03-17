@@ -13,6 +13,10 @@ export const getAllPosts = createAsyncThunk('posts/GETPOSTS', async () => {
     return client.get('/getPosts')
 })
 
+export const createPost = createAsyncThunk('post/CREATEPOST', async () => {
+    return client.post('/createPost')
+})
+
 const postSlice = createSlice({
     name: 'posts',
     initialState,
