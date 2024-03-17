@@ -65,7 +65,7 @@ function CreatePostForm() {
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
         </Form.Group>
-        <Form.Group as={Col} md="4" controlId="validationCustomUsername">
+        <Form.Group as={Col} md="4" controlId="validationCustomCover">
           <Form.Label>Cover</Form.Label>
           <InputGroup hasValidation>
             <InputGroup.Text id="inputGroupPrepend"></InputGroup.Text>
@@ -80,7 +80,7 @@ function CreatePostForm() {
             />
           </InputGroup>
         </Form.Group>
-        <Form.Group as={Col} md="4" controlId="validationCustomUsername">
+        <Form.Group as={Col} md="4" controlId="validationCustomCategory">
           <Form.Label>Category</Form.Label>
           <InputGroup hasValidation>
             <InputGroup.Text id="inputGroupPrepend"></InputGroup.Text>
@@ -95,7 +95,7 @@ function CreatePostForm() {
             />
           </InputGroup>
         </Form.Group>
-        <Form.Group as={Col} md="4" controlId="validationCustomUsername">
+        <Form.Group as={Col} md="4" controlId="validationCustomContent">
           <Form.Label>Content</Form.Label>
           <InputGroup hasValidation>
             <InputGroup.Text id="inputGroupPrepend"></InputGroup.Text>

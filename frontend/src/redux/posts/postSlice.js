@@ -13,8 +13,14 @@ export const getAllPosts = createAsyncThunk('posts/GETPOSTS', async () => {
     return client.get('/getPosts')
 })
 
-export const createPost = createAsyncThunk('post/CREATEPOST', async () => {
-    return client.post('/createPost')
+export const createPost = createAsyncThunk('post/CREATEPOST', async (postData) => {
+   try {
+    const response = await client.post('/createPost', postData)
+    return response
+   } catch (error) {
+    throw error
+   }
+    
 })
 
 const postSlice = createSlice({

@@ -14,6 +14,7 @@ class AxiosClient {
         }
        })
     }
+   
 
     setHeaders(headers) {
         this.axiosInstance.defaults.headers.common = {
@@ -40,5 +41,5 @@ class AxiosClient {
         return await this.axiosInstance.delete(url, config);
     }
 }
-
+ console.log('URL completo', `${AxiosClient.baseUrl}/createPost`);
 export default AxiosClient;
