@@ -61,7 +61,7 @@ GET http://localhost:3028/getPost/65f46681e7a127c70002701d
 ####
 
 
-PATCH http://localhost:3028/updatePost/65f466abe7a127c700027021
+PATCH http://localhost:3028/updatePost/65f46681e7a127c70002701d
 Content-Type: application/json
 
 {

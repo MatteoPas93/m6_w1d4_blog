@@ -16,7 +16,6 @@ const PostSchema = new mongoose.Schema({
     readTime: {
         type: Number,
         required: false
-        // number:
     },
     author: {
          name: {
@@ -32,6 +31,6 @@ const PostSchema = new mongoose.Schema({
         type: String,
         required: false,
     }
-})
+}, {timestamps: true, strict: true});
 
 module.exports = mongoose.model('postModel', PostSchema, 'posts')
