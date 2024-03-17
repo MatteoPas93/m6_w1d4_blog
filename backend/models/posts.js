@@ -15,6 +15,7 @@ const PostSchema = new mongoose.Schema({
     },
     readTime: {
         type: Number,
+        required: false
         // number:
     },
     author: {

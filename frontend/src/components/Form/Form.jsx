@@ -60,7 +60,7 @@ function CreatePostForm() {
             required
             type="text"
             placeholder="Author"
-            value={formData.author}
+            value={formData.author ? formData.author.name: ""}
             onChange={handleChange}
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
