@@ -42,4 +42,5 @@ class AxiosClient {
     }
 }
  console.log('URL completo', `${AxiosClient.baseUrl}/createPost`);
+ 
 export default AxiosClient;
