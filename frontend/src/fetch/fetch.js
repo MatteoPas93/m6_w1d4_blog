@@ -41,6 +41,6 @@ class AxiosClient {
         return await this.axiosInstance.delete(url, config);
     }
 }
- console.log('URL completo', `${AxiosClient.baseUrl}/createPost`);
+ console.log('URL ', `${AxiosClient.baseUrl}`);
  
 export default AxiosClient;

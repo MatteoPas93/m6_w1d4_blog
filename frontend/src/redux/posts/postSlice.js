@@ -6,21 +6,14 @@ const initialState = {
     posts: [],
     isLoading: false,
     error: null,
-    totalPosts: 0,
 };
 
 export const getAllPosts = createAsyncThunk('posts/GETPOSTS', async () => {
     return client.get('/getPosts')
 })
 
-export const createPost = createAsyncThunk('post/CREATEPOST', async (postData) => {
-   try {
-    const response = await client.post('/createPost', postData)
-    return response
-   } catch (error) {
-    throw error
-   }
-    
+export const createPost = createAsyncThunk('post/CREATEPOST', async () => {
+   return client.post('/createPost')    
 })
 
 const postSlice = createSlice({
@@ -33,7 +26,6 @@ const postSlice = createSlice({
         })
         .addCase(getAllPosts.fulfilled, (state, action) => {
             state.isLoading = false
-            state.totalPosts = action.payload.length
             state.posts = action.payload
         })
         .addCase(getAllPosts.rejected, state => {

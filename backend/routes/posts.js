@@ -9,7 +9,7 @@ routerPosts.get("/getPosts", async (request, response) => {
       .find()
       .limit(pageSize)
       .skip((page - 1) * pageSize)
-      .sort({ title: -1 });
+      .sort({ author: 1 });
 
       const totalPosts = await postModel.countDocuments();
 
@@ -17,6 +17,7 @@ routerPosts.get("/getPosts", async (request, response) => {
         currentPage: page,
         pageSize,
         totalPages: Math.ceil(totalPosts / pageSize),
+        totalPosts: (totalPosts),
         posts
     });
   } catch (error) {

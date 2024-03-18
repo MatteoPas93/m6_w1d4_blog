@@ -1,18 +1,40 @@
-import { useEffect } from "react";
-import { allPosts, getAllPosts } from "../../redux/posts/postSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+// import { allPosts, getAllPosts } from "../../redux/posts/postSlice";
+// import { useDispatch, useSelector } from "react-redux";
+import AxiosClient from "../../fetch/fetch";
+
+const client = new AxiosClient();
 
 const Main = () => {
-  const dispatch = useDispatch();
-  const posts = useSelector(allPosts);
-  const isLoading = useSelector((state) => state.postData.isLoading);
+  // const dispatch = useDispatch();
+  // const posts = useSelector(allPosts);
+  // const isLoading = useSelector((state) => state.postData.isLoading);
 
-  console.log(posts);
+  // console.log(posts);
+
+  // useEffect(() => {
+  //   dispatch(getAllPosts());
+  // }, [dispatch]);
+
+  const [posts, setPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    dispatch(getAllPosts());
-  }, [dispatch]);
-
+    const fetchData = async () => {
+      try {
+        const response = await client.get("/getPosts");
+        setPosts(response.data);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error get posts", error);
+        setIsLoading(false);
+      }
+    };
+    
+    fetchData();
+  }, []); 
+  console.log(posts)
+  
   if (isLoading) {
     return <div> Loading...</div>;
   }
