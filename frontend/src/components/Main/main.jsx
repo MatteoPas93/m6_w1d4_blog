@@ -1,40 +1,26 @@
 import { useEffect, useState } from "react";
-// import { allPosts, getAllPosts } from "../../redux/posts/postSlice";
-// import { useDispatch, useSelector } from "react-redux";
-import AxiosClient from "../../fetch/fetch";
-
-const client = new AxiosClient();
+import axios from "axios";
 
 const Main = () => {
-  // const dispatch = useDispatch();
-  // const posts = useSelector(allPosts);
-  // const isLoading = useSelector((state) => state.postData.isLoading);
-
-  // console.log(posts);
-
-  // useEffect(() => {
-  //   dispatch(getAllPosts());
-  // }, [dispatch]);
-
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await client.get("/getPosts");
-        setPosts(response.data);
+        const response = await axios.get("http://localhost:3028/getPosts");
+        setPosts(response.data.posts);
         setIsLoading(false);
       } catch (error) {
         console.error("Error get posts", error);
         setIsLoading(false);
       }
     };
-    
+
     fetchData();
-  }, []); 
-  console.log(posts)
-  
+  }, []);
+  console.log(posts);
+
   if (isLoading) {
     return <div> Loading...</div>;
   }
@@ -43,11 +29,15 @@ const Main = () => {
     return <div> No posts available!</div>;
   }
   return (
-    <div>
+    <div className="container-main">
+      <div className="text-center">
       <h3> Total post: {posts.length} </h3>
+      </div>
+        <div className="row justify-content-between">
       <ul>
         {posts.map((post) => {
           return (
+            <div className="card">
             <li key={post._id}>
               <h5> {post.title} </h5>
               <h6> {post.author.name} </h6>
@@ -56,9 +46,11 @@ const Main = () => {
               <a href={post.content}>Link</a>
               <p> {post.readTime} </p>
             </li>
+            </div>
           );
         })}
       </ul>
+      </div>
     </div>
   );
 };
