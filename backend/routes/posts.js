@@ -1,8 +1,9 @@
 const express = require("express");
 const routerPosts = express.Router();
 const postModel = require("../models/posts");
+const logger = require('../middlewares/logger')
 
-routerPosts.get("/getPosts", async (request, response) => {
+routerPosts.get("/getPosts", logger,  async (request, response) => {
   const { page = 1, pageSize = 5 } = request.query;
   try {
     const posts = await postModel

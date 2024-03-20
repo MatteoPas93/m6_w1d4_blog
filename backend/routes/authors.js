@@ -1,8 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const authorModel = require("../models/authors");
+const bcrypt = require('bcrypt')
+const logger = require('../middlewares/logger')
+const validateAuthor = require('../middlewares/validateAuthor')
 
-router.get("/getAuthors", async (request, response) => {
+router.get("/getAuthors", logger, async (request, response) => {
   const { page = 1, pageSize = 5 } = request.query;
   try {
     const authors = await authorModel
@@ -45,11 +48,15 @@ router.get("/getAuthor/:id", async (request, response) => {
   }
 });
 
-router.post("/createAuthor", async (request, response) => {
+router.post("/createAuthor", validateAuthor,  async (request, response) => {
+
+  const salt = await bcrypt.genSalt(10)
+  const hashedPassword = await bcrypt.hash(request.body.password, salt)
   const newAuthor = new authorModel({
     name: request.body.name,
     surname: request.body.surname,
     email: request.body.email,
+    password: hashedPassword,
     birthday: request.body.birthday,
     avatar: request.body.avatar,
   });

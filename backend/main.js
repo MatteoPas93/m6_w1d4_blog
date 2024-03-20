@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require('cors')
+// const logger = require('./middlewares/logger')
 
 require("dotenv").config();
 
@@ -12,14 +13,17 @@ const app = express();
 
 const authorRoute = require("./routes/authors");
 const postRoute = require('./routes/posts')
+const loginRoute = require('./routes/login')
 
 // !Sezione middleware
 
 app.use(express.json());
 app.use(cors())
 
+// app.use(logger)
 app.use("/", authorRoute);
 app.use('/', postRoute);
+app.use('/', loginRoute)
 
 //! Connessione del Database
 

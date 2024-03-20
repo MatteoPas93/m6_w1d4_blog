@@ -8,11 +8,12 @@ POST http://localhost:3028/createAuthor
 Content-Type: application/json
 
 {
-    "name": "Marco",
-    "surname": "Rossi",
-    "email": "emailprova@email.it",
-    "birthday": "15/15/1994",
-    "avatar": "M"
+    "name": "Luca",
+    "surname": "Maggi",
+    "email": "emailAndrea@email.it",
+    "password": "prova",
+    "birthday": "15/07/1995",
+    "avatar": "https://tse1.mm.bing.net/th?id=OIP.awAiMS1BCAQ2xS2lcdXGlwHaHH&pid=Api&rs=1&c=1&qlt=95&w=116&h=111"
 }
 
 ####
@@ -71,3 +72,15 @@ Content-Type: application/json
 ####
 
 DELETE http://localhost:3028/deletePost/65f466abe7a127c700027021
+
+####
+
+# !LOGIN TEST
+
+POST http://localhost:3028/login
+Content-Type: application/json
+
+{
+    "email": "emailMatteo@email.it",
+    "password": "prova"
+}

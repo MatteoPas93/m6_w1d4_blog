@@ -15,6 +15,9 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    password: {
+        type:String,
+    },
     birthday: {
         type: String,
         required: true,
@@ -26,4 +29,4 @@ const UserSchema = new mongoose.Schema({
     }
 }, {timestamps: true, strict: true});
 
-module.exports = mongoose.model('userModel', UserSchema, 'users')
+module.exports = mongoose.model('userModel', UserSchema, 'authors')
