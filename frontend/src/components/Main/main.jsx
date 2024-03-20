@@ -1,5 +1,7 @@
+import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import './main.css'
 
 const Main = () => {
   const [posts, setPosts] = useState([]);
@@ -37,8 +39,8 @@ const Main = () => {
       <ul>
         {posts.map((post) => {
           return (
-            <div className="card">
-            <li key={post._id}>
+            <div key={post._id} className="card g-2">
+            <li >
               <h5> {post.title} </h5>
               <h6> {post.author.name} </h6>
               <img src={post.cover} alt="img" />
