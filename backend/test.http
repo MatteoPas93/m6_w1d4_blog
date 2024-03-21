@@ -46,13 +46,13 @@ POST http://localhost:3028/createPost
 Content-Type: application/json
 
 {
-    "category": "Fantasy",
-    "title": "Game of Thrones",
-    "cover": "https://tse1.mm.bing.net/th?id=OIP._HpT0s13C3rre6bD46rIggHaEK&pid=Api&rs=1&c=1&qlt=95&w=195&h=109",
-    "readTime": 1,
-    "author": { "name" : "George R.R. Martin",
+    "category": "Photography",
+    "title": "500px",
+    "cover": "https://wpblog.zyro.com/cdn-cgi/image/w=700,q=85/wp-content/uploads/2020/10/fotografia-di-ritratto.png",
+    "readTime": 22,
+    "author": { "name" : "...",
                  "avatar": "https://tse1.mm.bing.net/th?id=OIP.awAiMS1BCAQ2xS2lcdXGlwHaHH&pid=Api&rs=1&c=1&qlt=95&w=125&h=120"},
-    "content": "https://it.wikipedia.org/wiki/Il_Trono_di_Spade"
+    "content": "https://iso.500px.com/"
 }
 
 ####

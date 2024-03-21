@@ -6,7 +6,7 @@ import './nav.css'
 function NavigationBar() {
   return (
     <>
-      <Navbar data-bs-theme="dark">
+      <Navbar className='border-nav' data-bs-theme="dark">
         <Container>
           <Navbar.Brand href="#home">Navbar</Navbar.Brand>
           <Nav className="me-auto">
