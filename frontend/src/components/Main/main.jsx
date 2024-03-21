@@ -44,9 +44,9 @@ const Main = () => {
               <h5> {post.title} </h5>
               <h6> {post.author.name} </h6>
               <img src={post.cover} alt="img" />
-              <p> {post.category} </p>
-              <a href={post.content}>Link</a>
-              <p> {post.readTime} </p>
+              <p>Categoria: {post.category} </p>
+              <a href={post.content}>Vai alla pagina dell'articolo</a>
+              <p> Tempo di lettura: {post.readTime} min </p>
             </li>
             </div>
           );
