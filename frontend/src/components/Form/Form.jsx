@@ -12,7 +12,10 @@ function CreatePostForm() {
   const [validated, setValidated] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
-    author: "",
+    author: {
+      name:"",
+      avatar:""
+    },
     cover: "",
     category: "",
     content: ""
