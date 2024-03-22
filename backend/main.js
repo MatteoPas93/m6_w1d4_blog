@@ -3,8 +3,10 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 // const logger = require('./middlewares/logger')
 // const database = require('./database/database')
+// const path = require('path');
 
 require("dotenv").config();
+// { path: path.resolve(__dirname, '../.env') }
 
 const PORT = 3028;
 

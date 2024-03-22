@@ -1,5 +1,4 @@
 const cloudinary = require("../utils/cloudinary");
-const upload = require("../middlewares/multerStorage");
 
 exports.postCloudinary = (request, response) => {
   cloudinary.uploader.upload(request.file.path, (err, result) => {

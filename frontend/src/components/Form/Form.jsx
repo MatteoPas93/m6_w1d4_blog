@@ -1,41 +1,42 @@
-import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
-import Row from 'react-bootstrap/Row';
+import { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
+import Row from "react-bootstrap/Row";
 // import { createPost } from '../../redux/posts/postSlice';
 // import { useDispatch } from 'react-redux';
-import axios from 'axios';
+import axios from "axios";
 
 function CreatePostForm() {
-    // const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [validated, setValidated] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
     author: {
-      name:"",
-      avatar:""
+      name: "",
+      avatar: "",
     },
     cover: "",
     category: "",
-    content: ""
-  })
+    content: "",
+  });
 
   const handleSubmit = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.stopPropagation();
     } else {
-        // dispatch(createPost(formData))
-          try {
-            await axios.post(`${process.env.REACT_APP_SERVER_BASE_URL}/createPost`, formData)
-          } catch (error) {
-            console.error(error)
-          }
-        
-
+      // dispatch(createPost(formData))
+      try {
+        await axios.post(
+          `${process.env.REACT_APP_SERVER_BASE_URL}/createPost`,
+          formData
+        );
+      } catch (error) {
+        console.error(error);
+      }
     }
 
     setValidated(true);
@@ -44,21 +45,21 @@ function CreatePostForm() {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === 'author') {
+    if (name === "author") {
       setFormData({
         ...formData,
         author: {
           ...formData.author,
-          name: value
-        }
+          name: value,
+        },
       });
     } else {
       setFormData({
         ...formData,
-        [name]: value
+        [name]: value,
       });
     }
-  }
+  };
 
   return (
     <Form noValidate validated={validated} onSubmit={handleSubmit}>
@@ -66,7 +67,7 @@ function CreatePostForm() {
         <Form.Group as={Col} md="4" controlId="validationCustom01">
           <Form.Label>Title</Form.Label>
           <Form.Control
-          name = 'title'
+            name="title"
             required
             type="text"
             placeholder="Title"
@@ -78,7 +79,7 @@ function CreatePostForm() {
         <Form.Group as={Col} md="4" controlId="validationCustom02">
           <Form.Label>Author</Form.Label>
           <Form.Control
-          name = 'author'
+            name="author"
             required
             type="text"
             placeholder="Author"
@@ -92,11 +93,11 @@ function CreatePostForm() {
           <InputGroup hasValidation>
             <InputGroup.Text id="inputGroupPrepend"></InputGroup.Text>
             <Form.Control
-            name = 'cover'
+              name="cover"
               type="text"
               placeholder="Cover"
               value={formData.cover}
-            onChange={handleChange}
+              onChange={handleChange}
               aria-describedby="inputGroupPrepend"
               required
             />
@@ -107,11 +108,11 @@ function CreatePostForm() {
           <InputGroup hasValidation>
             <InputGroup.Text id="inputGroupPrepend"></InputGroup.Text>
             <Form.Control
-            name = 'category'
+              name="category"
               type="text"
               placeholder="Category"
               value={formData.category}
-            onChange={handleChange}
+              onChange={handleChange}
               aria-describedby="inputGroupPrepend"
               required
             />
@@ -122,11 +123,11 @@ function CreatePostForm() {
           <InputGroup hasValidation>
             <InputGroup.Text id="inputGroupPrepend"></InputGroup.Text>
             <Form.Control
-            name = 'content'
+              name="content"
               type="text"
               placeholder="Content"
               value={formData.content}
-            onChange={handleChange}
+              onChange={handleChange}
               aria-describedby="inputGroupPrepend"
               required
             />
