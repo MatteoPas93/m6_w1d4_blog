@@ -22,20 +22,19 @@ function CreatePostForm() {
     content: ""
   })
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.stopPropagation();
     } else {
-        // dispatch(createPost(formData));
-        const createPost = async () => {
+        // dispatch(createPost(formData))
           try {
-            await axios.post('http://localhost:3028/createPost', formData)
+            await axios.post(`${process.env.REACT_APP_SERVER_BASE_URL}/createPost`, formData)
           } catch (error) {
             console.error(error)
           }
-        }
+        
 
     }
 

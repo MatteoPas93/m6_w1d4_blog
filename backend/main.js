@@ -1,7 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const cors = require('cors')
+const cors = require("cors");
 // const logger = require('./middlewares/logger')
+// const database = require('./database/database')
 
 require("dotenv").config();
 
@@ -12,18 +13,20 @@ const app = express();
 // !Import di Routes
 
 const authorRoute = require("./routes/authors");
-const postRoute = require('./routes/posts')
-const loginRoute = require('./routes/login')
+const postRoute = require("./routes/posts");
+const loginRoute = require("./routes/login");
+const cloudRoute = require("./routes/cloudinary");
 
 // !Sezione middleware
 
 app.use(express.json());
-app.use(cors())
+app.use(cors());
 
 // app.use(logger)
 app.use("/", authorRoute);
-app.use('/', postRoute);
-app.use('/', loginRoute)
+app.use("/", postRoute);
+app.use("/", loginRoute);
+app.use("/", cloudRoute);
 
 //! Connessione del Database
 
@@ -35,6 +38,4 @@ db.once("open", () => {
   console.log("Database successfully connected!");
 });
 
-app.listen(PORT, () =>
-  console.log(`Server connected on port ${PORT}`)
-);
+app.listen(PORT, () => console.log(`Server connected on port ${PORT}`));
