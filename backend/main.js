@@ -18,6 +18,8 @@ const authorRoute = require("./routes/authors");
 const postRoute = require("./routes/posts");
 const loginRoute = require("./routes/login");
 const cloudRoute = require("./routes/cloudinary");
+const authorAvatarRoute = require('./routes/authors');
+const postCoverRoute = require('./routes/posts');
 
 // !Sezione middleware
 
@@ -29,6 +31,8 @@ app.use("/", authorRoute);
 app.use("/", postRoute);
 app.use("/", loginRoute);
 app.use("/", cloudRoute);
+app.use('/', authorAvatarRoute);
+app.use('/', postCoverRoute);
 
 //! Connessione del Database
 

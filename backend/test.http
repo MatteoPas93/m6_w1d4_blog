@@ -84,3 +84,25 @@ Content-Type: application/json
     "email": "emailMatteo@email.it",
     "password": "prova"
 }
+
+####
+
+# !MODIFICA AVATAR AUTHOR
+
+PATCH http://localhost:3028/authors/65faee2aeb3c006d10f3a312/avatar
+Content-Type: application/json
+
+{
+    "avatar": "https://tse2.mm.bing.net/th?id=OIP.rM0tzYnXYqmdR5G6LtAdRgHaHa&pid=Api&P=0&h=180"
+}
+
+####
+
+# !MODIFICA COVER POST
+
+PATCH http://localhost:3028/posts/65fd8f217417a944f32a0392/cover 
+Content-Type: application/json
+
+{
+    "cover": "https://tse1.mm.bing.net/th?id=OIP.vY1lY79ihHx3VblO3czu1wHaDt&pid=Api&rs=1&c=1&qlt=95&w=231&h=115"
+}
