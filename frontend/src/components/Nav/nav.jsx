@@ -13,7 +13,6 @@ function NavigationBar() {
           <Nav className="me-auto">
             <Nav.Link as={Link} to={'/home'}>Home</Nav.Link>
             <Nav.Link as={Link} to={'/addPost'}>Add post</Nav.Link>
-            <Nav.Link as={Link} to={'/updateCover'}>Update Cover</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
