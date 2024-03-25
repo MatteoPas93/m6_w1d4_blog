@@ -2,10 +2,17 @@ import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import './main.css'
+import { Link } from "react-router-dom";
+import UpdateCoverForm from "../Form/FormUpdateCover";
 
 const Main = () => {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedPost, setSelectedPost] = useState(null);
+
+  const handlePostClick = (id) => {
+    setSelectedPost(id)
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,6 +54,12 @@ const Main = () => {
               <p>Categoria: {post.category} </p>
               <a href={post.content}>Vai alla pagina dell'articolo</a>
               <p> Tempo di lettura: {post.readTime} min </p>
+              <button  onClick={() => handlePostClick(post._id)}>
+                <Link to={`/updateCover/${post._id}`}>
+                Update Cover
+                </Link>
+                </button>
+                {selectedPost === post._id && <UpdateCoverForm postId={post._id} />}
             </li>
             </div>
           );
@@ -54,7 +67,7 @@ const Main = () => {
       </ul>
       </div>
     </div>
-  );
+  ); 
 };
 
 export default Main;

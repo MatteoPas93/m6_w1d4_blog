@@ -1,12 +1,10 @@
-import NavigationBar from "../Nav/nav";
-import Main from "../Main/main";
-import CreatePostForm from "../Form/Form";
+import NavigationBar from "../components/Nav/nav";
+import Main from "../components/Main/main";
 
 const HomePage = () => {
     return (
         <>
         <NavigationBar/>
-        <CreatePostForm/>
         <Main/>
         
         </>

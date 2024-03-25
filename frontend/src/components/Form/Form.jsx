@@ -62,8 +62,9 @@ function CreatePostForm() {
   };
 
   return (
+    
     <Form noValidate validated={validated} onSubmit={handleSubmit}>
-      <Row className="mb-3">
+      <Row className="mb-3 flex-column ml-1">
         <Form.Group as={Col} md="4" controlId="validationCustom01">
           <Form.Label>Title</Form.Label>
           <Form.Control
@@ -134,7 +135,7 @@ function CreatePostForm() {
           </InputGroup>
         </Form.Group>
       </Row>
-      <Form.Group className="mb-3">
+      <Form.Group className="mb-3 ml-3">
         <Form.Check
           required
           label="Agree to terms and conditions"
@@ -142,8 +143,9 @@ function CreatePostForm() {
           feedbackType="invalid"
         />
       </Form.Group>
-      <Button type="submit">Submit form</Button>
+      <Button className="ml-3" type="submit">Submit form</Button>
     </Form>
+    
   );
 }
 
