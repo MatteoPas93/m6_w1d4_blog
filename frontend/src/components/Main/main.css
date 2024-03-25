@@ -1,0 +1,30 @@
+.container-card {
+    gap: 15px;
+}
+
+.card  {
+    max-width: 350px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between
+}
+
+.card img {
+    object-fit: cover;
+    width: 100%;
+}
+
+.card button {
+    margin-top: 10px;
+}
+
+.container-form-update {
+    width: 370px;
+    z-index: 1;
+    background: white;
+    border: 2px solid rgb(220, 217, 217);
+    position: absolute;
+    left: -3%;
+    top: 0%;
+}
