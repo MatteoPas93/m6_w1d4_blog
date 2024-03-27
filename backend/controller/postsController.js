@@ -1,7 +1,7 @@
 const postModel = require('../models/posts');
 
 exports.getPosts =  async (request, response) => {
-    const { page = 1, pageSize = 20 } = request.query;
+    const { page = 1, pageSize = 8 } = request.query;
     try {
       const posts = await postModel
         .find()

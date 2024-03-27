@@ -6,13 +6,15 @@ import UpdateCoverForm from "../Form/FormUpdateCover";
 // import { Link } from "react-router-dom";
 import ResponsivePagination from "react-responsive-pagination";
 import "react-responsive-pagination/themes/classic.css";
+// import AxiosClient from "../../fetch/fetch";
 
+// const client = new AxiosClient()
 const Main = () => {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedPost, setSelectedPost] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(4);
+  const [pageSize, setPageSize] = useState(8);
   const [totalPages, setTotalPages] = useState(0);
 
   const handlePostClick = (postId) => {
@@ -49,20 +51,16 @@ const Main = () => {
   if (!Array.isArray(posts) || posts.length === 0) {
     return <div> No posts available!</div>;
   }
-  return (<>
-              <ResponsivePagination 
-              current= {currentPage}
-              total = {totalPages}
-              onPageChange={setCurrentPage}
-              />
-    <div className="container-main ml-3">
-      <div className="text-center">
-        <h3> Total post: {posts.length} </h3>
-      </div>
-      <div className="container-card row justify-content-between">
-        {posts.map((post) => {
-          return (
-            
+  return (
+    <>
+     
+      <div className="container-main ml-3">
+        <div className="text-center">
+          <h3> Total post: {posts.length} </h3>
+        </div>
+        <div className="container-card row justify-content-between">
+          {posts.map((post) => {
+            return (
               <div key={post._id} className="card g-2">
                 <h5> {post.title} </h5>
                 <h6> {post.author.name} </h6>
@@ -88,11 +86,17 @@ const Main = () => {
                   Update Cover
                   </Link> */}
               </div>
-            
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
-    </div>
+      <div className="mt-4">
+      <ResponsivePagination
+        current={currentPage}
+        total={totalPages}
+        onPageChange={setCurrentPage}
+      />
+      </div>
     </>
   );
 };
