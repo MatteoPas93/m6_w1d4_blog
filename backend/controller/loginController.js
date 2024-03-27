@@ -1,6 +1,8 @@
 const userModel = require('../models/authors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const email = require('../models/email')
+// const nodemailer = require('nodemailer')
 
 exports.loginPost = async (request, response) => {
     try {
@@ -37,6 +39,25 @@ exports.loginPost = async (request, response) => {
           expiresIn: "24h",
         }
       );
+
+    //   // Invio dell'email
+    // const transporter = nodemailer.createTransport({
+    // });
+
+    // const mailOptions = {
+    //   from: 'example@email.it',
+    //   to: '',
+    //   subject: 'Login Successful',
+    //   text: 'You have successfully logged in.',
+    // };
+
+    // transporter.sendMail(mailOptions, (error, info) => {
+    //   if (error) {
+    //     console.error("Error sending email:", error);
+    //   } else {
+    //     console.log("Email sent:", info.response);
+    //   }
+    // });
   
       response.header("Authorization", token).status(200).send({
         statusCode: 200,

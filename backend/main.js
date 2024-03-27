@@ -20,6 +20,7 @@ const loginRoute = require("./routes/login");
 const cloudRoute = require("./routes/cloudinary");
 const authorAvatarRoute = require('./routes/authors');
 const postCoverRoute = require('./routes/posts');
+const emailRoute = require('./routes/emails');
 
 // !Sezione middleware
 
@@ -33,6 +34,7 @@ app.use("/", loginRoute);
 app.use("/", cloudRoute);
 app.use('/', authorAvatarRoute);
 app.use('/', postCoverRoute);
+app.use('/', emailRoute);
 
 //! Connessione del Database
 
