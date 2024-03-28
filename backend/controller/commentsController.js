@@ -130,14 +130,22 @@ exports.patchComment = async (request, response) => {
 };
 
 exports.deleteComment = async (request, response) => {
-  const { id } = request.params;
+  const { id, commentId } = request.params;
   try {
-    const comment = await commentModel.findByIdAndDelete(id);
+    const post = await postModel.findById(id)
+
+    if (!post) {
+      return response.status(404).send({
+        statusCode: 404,
+        message: "Post not found",
+      });
+    }
+    const comment = await commentModel.findByIdAndDelete(commentId);
 
     if (!comment) {
       return response.status(404).send({
         statusCode: 404,
-        message: "Comment does not exist",
+        message: "Comment not found",
       });
     }
     response.status(200).send("Comment has been removed");

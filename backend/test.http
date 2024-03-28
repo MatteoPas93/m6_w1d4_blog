@@ -133,3 +133,7 @@ Content-Type: application/json
 {
     "user": "Secondo user di prova"
 }
+
+####
+
+DELETE http://localhost:3028/blogPosts/66059f578620b7e281f63a3d/deleteComment/66059ffc8620b7e281f63a40
