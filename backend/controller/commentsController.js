@@ -56,16 +56,31 @@ exports.getComment = async (request, response) => {
 exports.postComment = async (request, response) => {
   const { id } = request.params;
 
+  const post = await postModel.findById(id)
+
+  if (!post) {
+    return response.status(404).send({
+      statusCode: 404,
+      message: 'Post not found'
+    });
+  }
+
   const newComment = new commentModel({
     user: request.body.user,
     comment: request.body.comment,
-    date: request.body.date,
+    date: Date.now(),
+    id: post._id
   });
   try {
     const commentToSave = await newComment.save();
+
+    post.comments.push(commentToSave._id);
+    await post.save();
+
     response.status(201).send({
       statusCode: 201,
       payload: commentToSave,
+      message: 'Comment successfully posted'
     });
   } catch (error) {
     response.status(500).send({

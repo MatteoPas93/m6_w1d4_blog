@@ -2,7 +2,7 @@ const express = require('express');
 const routerComments = express.Router();
 const commentController = require('../controller/commentsController');
 
-routerComments.get('/blogPosts/:id/getComments', commentController.getComments);
+routerComments.get('/blogPosts/:id/comments', commentController.getComments);
 
 routerComments.get('/blogPosts/:id/comments/:commentId', commentController.getComment);
 

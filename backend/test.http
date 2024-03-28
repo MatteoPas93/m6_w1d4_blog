@@ -112,4 +112,15 @@ Content-Type: application/json
 
 # !TEST COMMENTS
 
-GET http://localhost:3028/blogPosts/6605808c69da0bc0a9baff3e/comments/66043c72ea6a00769c409cb0
+GET http://localhost:3028/blogPosts/6605808c69da0bc0a9baff3e/comments
+
+####
+
+POST http://localhost:3028/blogPosts/66059f578620b7e281f63a3d
+Content-Type: application/json
+
+{
+    "user": "User di Prova",
+    "comment": "Commento di Prova",
+    "date": "Date: 28/03/2024"
+}

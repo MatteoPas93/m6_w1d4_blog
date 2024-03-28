@@ -31,10 +31,10 @@ const PostSchema = new mongoose.Schema({
         type: String,
         required: false,
     },
-    comments: {
+    comments: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'commentModel'
-    }
+    }]
 }, {timestamps: true, strict: true});
 
 module.exports = mongoose.model('postModel', PostSchema, 'posts')
