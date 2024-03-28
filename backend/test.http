@@ -52,12 +52,13 @@ Content-Type: application/json
     "readTime": 22,
     "author": { "name" : "...",
                  "avatar": "https://tse1.mm.bing.net/th?id=OIP.awAiMS1BCAQ2xS2lcdXGlwHaHH&pid=Api&rs=1&c=1&qlt=95&w=125&h=120"},
-    "content": "https://iso.500px.com/"
+    "content": "https://iso.500px.com/",
+    "comments": "66043c72ea6a00769c409cb0"
 }
 
 ####
 
-GET http://localhost:3028/getPost/65f46681e7a127c70002701d
+GET http://localhost:3028/getPost/6605808c69da0bc0a9baff3e
 
 ####
 
@@ -106,3 +107,9 @@ Content-Type: application/json
 {
     "cover": "https://tse1.mm.bing.net/th?id=OIP.vY1lY79ihHx3VblO3czu1wHaDt&pid=Api&rs=1&c=1&qlt=95&w=231&h=115"
 }
+
+####
+
+# !TEST COMMENTS
+
+GET http://localhost:3028/blogPosts/6605808c69da0bc0a9baff3e/comments/66043c72ea6a00769c409cb0

@@ -1,14 +1,18 @@
 const postModel = require('../models/posts');
+const commentModel = require('../models/comments');
+const comments = require('../models/comments');
 
 exports.getPosts =  async (request, response) => {
     const { page = 1, pageSize = 8 } = request.query;
     try {
       const posts = await postModel
         .find()
+        .populate('comments')
         .limit(pageSize)
         .skip((page - 1) * pageSize)
         .sort({ author: 1 });
   
+        
         const totalPosts = await postModel.countDocuments();
   
       response.status(200).send({
@@ -47,6 +51,7 @@ exports.getPost =  async (request, response) => {
   }
 
 exports.addPost = async (request, response) => {
+    const comment = await commentModel.findOne({ _id: request.body.comments })
     const newPost = new postModel({
       category: request.body.category,
       title: request.body.title,
@@ -54,10 +59,12 @@ exports.addPost = async (request, response) => {
       readTime: request.body.readTime,
       author: request.body.author,
       content: request.body.content,
+      comments: comment._id
     });
   
     try {
       const postToSave = await newPost.save();
+       
       response.status(201).send({
         statusCode: 201,
         payload: postToSave,

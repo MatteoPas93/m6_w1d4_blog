@@ -2,11 +2,21 @@ const commentModel = require("../models/comments");
 const postModel = require("../models/posts");
 
 exports.getComments = async (request, response) => {
+  const {id} = request.params
   try {
-    const comments = await commentModel;
-    response.status(200).send({
+    const post = await postModel.findById(id);
+    const comments = await commentModel.find(post.comments);
+
+    if(!comments) {
+      return response.status(404).send({
+        statusCode: 404,
+        message: 'Comments not found!'
+      })
+    }
+
+    response.status(200).send(
       comments,
-    });
+    );
   } catch (error) {
     response.status(500).send({
       statusCode: 500,
@@ -16,14 +26,22 @@ exports.getComments = async (request, response) => {
 };
 
 exports.getComment = async (request, response) => {
-  const { id } = request.params;
+  const {id, commentId} = request.params;
   try {
-    const comment = await commentModel.findById(id);
+    const post = await postModel.findById(id)
+
+    if (!post) {
+      return response.status(404).send({
+        statusCode: 404,
+        message: "Post not found!",
+      });
+    }
+    const comment = await commentModel.findById(commentId)
 
     if (!comment) {
       return response.status(404).send({
         statusCode: 404,
-        message: "Comment does not exist!",
+        message: "Comment not found!",
       });
     }
     response.status(200).send(comment);

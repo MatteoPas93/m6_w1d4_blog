@@ -4,12 +4,12 @@ const commentController = require('../controller/commentsController');
 
 routerComments.get('/blogPosts/:id/getComments', commentController.getComments);
 
-routerComments.get('/blogPosts/:id/getComments/comment:id', commentController.getComment);
+routerComments.get('/blogPosts/:id/comments/:commentId', commentController.getComment);
 
 routerComments.post('/blogPosts/:id', commentController.postComment);
 
-routerComments.patch('/blogPosts/:id/patchComments/comment:id', commentController.patchComment);
+routerComments.patch('/blogPosts/:id/patchComments/:commentId', commentController.patchComment);
 
-routerComments.delete('/blogPosts/:id/deleteComment/comment:id', commentController.deleteComment);
+routerComments.delete('/blogPosts/:id/deleteComment/:commentId', commentController.deleteComment);
 
 module.exports = routerComments;

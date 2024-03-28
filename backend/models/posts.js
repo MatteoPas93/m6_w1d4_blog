@@ -30,6 +30,10 @@ const PostSchema = new mongoose.Schema({
     content: {
         type: String,
         required: false,
+    },
+    comments: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'commentModel'
     }
 }, {timestamps: true, strict: true});
 
