@@ -91,15 +91,23 @@ exports.postComment = async (request, response) => {
 };
 
 exports.patchComment = async (request, response) => {
-  const { id } = request.params;
+  const { id, commentId } = request.params;
 
   try {
-    const comment = await commentModel.findById(id);
+    const post = await postModel.findById(id);
+
+    if (!post) {
+      return response.status(404).send({
+        statusCode: 404,
+        message: "Post not found!",
+      });
+    }
+    const comment = await commentModel.findById(commentId);
 
     if (!comment) {
       return response.status(404).send({
         statusCode: 404,
-        message: "Comment does not exist!",
+        message: "Comment not found!",
       });
     }
 
@@ -107,7 +115,7 @@ exports.patchComment = async (request, response) => {
     const options = { new: true };
 
     const results = await commentModel.findByIdAndUpdate(
-      id,
+      commentId,
       updateComment,
       options
     );

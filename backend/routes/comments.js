@@ -8,7 +8,7 @@ routerComments.get('/blogPosts/:id/comments/:commentId', commentController.getCo
 
 routerComments.post('/blogPosts/:id', commentController.postComment);
 
-routerComments.patch('/blogPosts/:id/patchComments/:commentId', commentController.patchComment);
+routerComments.patch('/blogPosts/:id/comments/:commentId', commentController.patchComment);
 
 routerComments.delete('/blogPosts/:id/deleteComment/:commentId', commentController.deleteComment);
 

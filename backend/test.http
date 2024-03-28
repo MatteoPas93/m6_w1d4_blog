@@ -124,3 +124,12 @@ Content-Type: application/json
     "comment": "Commento di Prova",
     "date": "Date: 28/03/2024"
 }
+
+####
+
+PATCH http://localhost:3028/blogPosts/66059f578620b7e281f63a3d/comments/6605a14de2b5ec6c40f3aea3
+Content-Type: application/json
+
+{
+    "user": "Secondo user di prova"
+}
