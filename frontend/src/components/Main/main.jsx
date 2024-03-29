@@ -18,14 +18,17 @@ const Main = () => {
   const [pageSize, setPageSize] = useState(8);
   const [totalPages, setTotalPages] = useState(0);
 
+
   const handlePostClick = (postId, type) => {
     if (type === "cover") {
-    setSelectedPost((prevSelectedPost) =>
-      prevSelectedPost === postId ? null : postId
-    )} else if (type === "comment") {
-    setSelectedPostComment((prevSelectedPostComment) =>
-      prevSelectedPostComment === postId ? null : postId
-    )};
+      setSelectedPost((prevSelectedPost) =>
+        prevSelectedPost === postId ? null : postId
+      );
+    } else if (type === "comment") {
+      setSelectedPostComment((prevSelectedPostComment) =>
+        prevSelectedPostComment === postId ? null : postId
+      );
+    }
   };
   const fetchPosts = async () => {
     try {
@@ -72,7 +75,11 @@ const Main = () => {
                 <p>Categoria: {post.category} </p>
                 <a href={post.content}>Vai alla pagina dell'articolo</a>
                 <p> Tempo di lettura: {post.readTime} min </p>
-                <button onClick={() => handlePostClick(post._id, "cover")}>
+                <button
+                  onClick={() => {
+                    handlePostClick(post._id, "cover");
+                  }}
+                >
                   {selectedPost === post._id
                     ? "Close window update"
                     : "Update Cover"}
@@ -86,12 +93,13 @@ const Main = () => {
                   </div>
                 )}
                 <button onClick={() => handlePostClick(post._id, "comment")}>
-                  {selectedPostComment === post._id
+                  {/* {selectedPostComment === post._id
                     ? "Close comments area"
-                    : "Open comments area"}
+                    : "Open comments area"} */}{" "}
+                  Open comments area
                 </button>
                 {selectedPostComment === post._id && (
-                  <CommentArea postId = {post._id}/>
+                  <CommentArea postId={post._id} />
                 )}
               </div>
             );

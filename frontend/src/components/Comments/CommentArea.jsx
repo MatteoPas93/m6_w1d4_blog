@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import ResponsivePagination from 'react-responsive-pagination';
+import ResponsivePagination from "react-responsive-pagination";
 import "react-responsive-pagination/themes/classic.css";
+import { Button, Modal } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./comments.css";
 
 const CommentArea = ({ postId }) => {
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(4);
+  const [pageSize, setPageSize] = useState(3);
   const [totalPages, setTotalPages] = useState(0);
+  const [showModal, setShowModal] = useState(false);
 
   const fetchComments = async () => {
     try {
@@ -28,6 +32,10 @@ const CommentArea = ({ postId }) => {
     fetchComments();
   }, [postId, currentPage, pageSize]);
 
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
   if (isLoading) {
     return <div> Loading...</div>;
   }
@@ -36,24 +44,43 @@ const CommentArea = ({ postId }) => {
   }
 
   return (
-    <div className="section-comments">
-      <h3>Comments:</h3>
-      {comments &&
-        comments.map((comment, index) => (
-          <div key={index}>
-            <h5> {comment.user} </h5>
-            <p> {comment.comment} </p>
-            <p> {comment.date} </p>
-          </div>
-        ))}
+    <div
+      className="modal show"
+      style={{ display: "block", position: "initial" }}
+    >
+      
+        <div className="section-comments">
+          <Modal show={showModal} onHide={handleCloseModal}>
+            <Modal.Header>
+              <Modal.Title>Comments</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              {comments &&
+                comments.map((comment, index) => (
+                  <div key={index}>
+                    <h5> {comment.user} </h5>
+                    <p> {comment.comment} </p>
+                    <p> {comment.date} </p>
+                  </div>
+                ))}
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleCloseModal}>
+                Close
+              </Button>
+              <Button variant="primary">Add comment</Button>
+            </Modal.Footer>
+          </Modal>
+        </div>
         <div className="mt-4">
-        <ResponsivePagination
-          current={currentPage}
-          total={totalPages}
-          onPageChange={setCurrentPage}
-        />
+          <ResponsivePagination
+            current={currentPage}
+            total={totalPages}
+            onPageChange={setCurrentPage}
+          />
+        </div>
       </div>
-    </div>
+    
   );
 };
 

@@ -120,7 +120,7 @@ POST http://localhost:3028/blogPosts/660674a43539e8e54f4cc0bb
 Content-Type: application/json
 
 {
-    "user": "User n°1",
+    "user": "User n°5",
     "comment": "Commento di Prova",
     "date": "Date: 29/03/2024"
 }

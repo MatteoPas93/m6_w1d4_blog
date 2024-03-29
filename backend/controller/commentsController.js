@@ -3,7 +3,7 @@ const postModel = require("../models/posts");
 
 exports.getComments = async (request, response) => {
   const {id} = request.params
-  const {page = 1, pageSize = 4} = request.query;
+  const {page = 1, pageSize = 3} = request.query;
   try {
     const post = await postModel.findById(id);
 
