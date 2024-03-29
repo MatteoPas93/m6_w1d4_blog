@@ -69,13 +69,11 @@ exports.postComment = async (request, response) => {
     user: request.body.user,
     comment: request.body.comment,
     date: Date.now(),
-    id: post._id
   });
   try {
     const commentToSave = await newComment.save();
 
-    post.comments.push(commentToSave._id);
-    await post.save();
+    await postModel.findByIdAndUpdate(id, {$push: {comments: commentToSave._id}})
 
     response.status(201).send({
       statusCode: 201,
@@ -132,7 +130,11 @@ exports.patchComment = async (request, response) => {
 exports.deleteComment = async (request, response) => {
   const { id, commentId } = request.params;
   try {
-    const post = await postModel.findById(id)
+    const post = await postModel.findOneAndUpdate(
+      {_id: id},
+      {$pull: {comments: commentId}},
+      {new: true}
+    )
 
     if (!post) {
       return response.status(404).send({

@@ -116,13 +116,13 @@ GET http://localhost:3028/blogPosts/6605808c69da0bc0a9baff3e/comments
 
 ####
 
-POST http://localhost:3028/blogPosts/66059f578620b7e281f63a3d
+POST http://localhost:3028/blogPosts/66066e1f0d68eaa728337736
 Content-Type: application/json
 
 {
-    "user": "User di Prova",
+    "user": "User n°1",
     "comment": "Commento di Prova",
-    "date": "Date: 28/03/2024"
+    "date": "Date: 29/03/2024"
 }
 
 ####
@@ -136,4 +136,4 @@ Content-Type: application/json
 
 ####
 
-DELETE http://localhost:3028/blogPosts/66059f578620b7e281f63a3d/deleteComment/66059ffc8620b7e281f63a40
+DELETE http://localhost:3028/blogPosts/66066e1f0d68eaa728337736/deleteComment/66066e340d68eaa72833773f

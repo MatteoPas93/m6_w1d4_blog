@@ -51,7 +51,7 @@ exports.getPost =  async (request, response) => {
   }
 
 exports.addPost = async (request, response) => {
-    const comment = await commentModel.findOne({ _id: request.body.comments })
+    // const comment = await commentModel.findOne({ _id: request.body.comments })
     const newPost = new postModel({
       category: request.body.category,
       title: request.body.title,
@@ -59,7 +59,7 @@ exports.addPost = async (request, response) => {
       readTime: request.body.readTime,
       author: request.body.author,
       content: request.body.content,
-      comments: comment._id
+      comments: []
     });
   
     try {
