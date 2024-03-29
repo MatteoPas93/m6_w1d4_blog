@@ -3,24 +3,29 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "./main.css";
 import UpdateCoverForm from "../Form/FormUpdateCover";
-// import { Link } from "react-router-dom";
 import ResponsivePagination from "react-responsive-pagination";
 import "react-responsive-pagination/themes/classic.css";
+import CommentArea from "../Comments/CommentArea";
 // import AxiosClient from "../../fetch/fetch";
-
 // const client = new AxiosClient()
+
 const Main = () => {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedPost, setSelectedPost] = useState(null);
+  const [selectedPostComment, setSelectedPostComment] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(8);
   const [totalPages, setTotalPages] = useState(0);
 
-  const handlePostClick = (postId) => {
+  const handlePostClick = (postId, type) => {
+    if (type === "cover") {
     setSelectedPost((prevSelectedPost) =>
       prevSelectedPost === postId ? null : postId
-    );
+    )} else if (type === "comment") {
+    setSelectedPostComment((prevSelectedPostComment) =>
+      prevSelectedPostComment === postId ? null : postId
+    )};
   };
   const fetchPosts = async () => {
     try {
@@ -53,7 +58,6 @@ const Main = () => {
   }
   return (
     <>
-     
       <div className="container-main ml-3">
         <div className="text-center">
           <h3> Total post: {posts.length} </h3>
@@ -68,7 +72,7 @@ const Main = () => {
                 <p>Categoria: {post.category} </p>
                 <a href={post.content}>Vai alla pagina dell'articolo</a>
                 <p> Tempo di lettura: {post.readTime} min </p>
-                <button onClick={() => handlePostClick(post._id)}>
+                <button onClick={() => handlePostClick(post._id, "cover")}>
                   {selectedPost === post._id
                     ? "Close window update"
                     : "Update Cover"}
@@ -81,21 +85,25 @@ const Main = () => {
                     />
                   </div>
                 )}
-
-                {/* <Link to={`/updateCover/${post._id}`}>
-                  Update Cover
-                  </Link> */}
+                <button onClick={() => handlePostClick(post._id, "comment")}>
+                  {selectedPostComment === post._id
+                    ? "Close comments area"
+                    : "Open comments area"}
+                </button>
+                {selectedPostComment === post._id && (
+                  <CommentArea postId = {post._id}/>
+                )}
               </div>
             );
           })}
         </div>
       </div>
       <div className="mt-4">
-      <ResponsivePagination
-        current={currentPage}
-        total={totalPages}
-        onPageChange={setCurrentPage}
-      />
+        <ResponsivePagination
+          current={currentPage}
+          total={totalPages}
+          onPageChange={setCurrentPage}
+        />
       </div>
     </>
   );

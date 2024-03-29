@@ -3,9 +3,21 @@ const postModel = require("../models/posts");
 
 exports.getComments = async (request, response) => {
   const {id} = request.params
+  const {page = 1, pageSize = 4} = request.query;
   try {
     const post = await postModel.findById(id);
-    const comments = await commentModel.find(post.comments);
+
+    if(!post) {
+      return response.status(404).send({
+        statusCode: 404,
+        message: 'Post not found!'
+      })
+    }
+
+    const comments = await commentModel.find({_id: {$in: post.comments}})
+    .limit(pageSize)
+    .skip((page - 1) * pageSize)
+    .sort({comment: 1})
 
     if(!comments) {
       return response.status(404).send({
@@ -14,9 +26,15 @@ exports.getComments = async (request, response) => {
       })
     }
 
-    response.status(200).send(
+    const totalComments = await commentModel.countDocuments()
+
+    response.status(200).send({
+      currentPage: page,
+      pageSize,
+      totalePages: Math.ceil(totalComments / pageSize),
+      totalComments: (totalComments),
       comments,
-    );
+    });
   } catch (error) {
     response.status(500).send({
       statusCode: 500,

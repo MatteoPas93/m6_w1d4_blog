@@ -3,7 +3,7 @@
 }
 
 .card  {
-    max-width: 350px;
+    width: 250px;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
@@ -26,5 +26,5 @@
     border: 2px solid rgb(220, 217, 217);
     position: absolute;
     left: -3%;
-    top: 0%;
+    top: 10%;
 }

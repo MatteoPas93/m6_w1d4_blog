@@ -51,7 +51,6 @@ exports.getPost =  async (request, response) => {
   }
 
 exports.addPost = async (request, response) => {
-    // const comment = await commentModel.findOne({ _id: request.body.comments })
     const newPost = new postModel({
       category: request.body.category,
       title: request.body.title,

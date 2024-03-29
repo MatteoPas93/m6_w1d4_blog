@@ -112,11 +112,11 @@ Content-Type: application/json
 
 # !TEST COMMENTS
 
-GET http://localhost:3028/blogPosts/6605808c69da0bc0a9baff3e/comments
+GET http://localhost:3028/blogPosts/660674a43539e8e54f4cc0bb/comments
 
 ####
 
-POST http://localhost:3028/blogPosts/66066e1f0d68eaa728337736
+POST http://localhost:3028/blogPosts/660674a43539e8e54f4cc0bb
 Content-Type: application/json
 
 {
