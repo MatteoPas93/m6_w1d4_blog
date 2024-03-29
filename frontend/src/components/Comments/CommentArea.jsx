@@ -15,7 +15,7 @@ const CommentArea = ({ postId }) => {
       const response = await axios.get(
         `${process.env.REACT_APP_SERVER_BASE_URL}/blogPosts/${postId}/comments`
       );
-      setComments(response.data);
+      setComments(response.data.comments);
       console.log(response.data);
       setTotalPages(response.data.totalPages);
       setIsLoading(false);
