@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import AddPostPage from './pages/AddPostPage';
 import UpdateCoverPage from './pages/UpdateCoverPost';
 import RegistrationUser from './pages/CreateUser';
+import UpdatePostPage from './pages/UpdatePost';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
    <Route path='/addPost' element={<AddPostPage/>}/>
    <Route path='/updateCover/:id' element={<UpdateCoverPage/>}/>
    <Route path='/registration' element={<RegistrationUser/>} />
+   <Route path='/updatePost/:id' element={<UpdatePostPage/>} />
    </Routes>
     </BrowserRouter>
   )

@@ -63,11 +63,11 @@ GET http://localhost:3028/getPost/6605808c69da0bc0a9baff3e
 ####
 
 
-PATCH http://localhost:3028/updatePost/65f46681e7a127c70002701d
+PATCH http://localhost:3028/updatePost/660674a43539e8e54f4cc0bb
 Content-Type: application/json
 
 {
-    "title" : "Moon"
+    "category" : "Comedy"
 }
 
 ####

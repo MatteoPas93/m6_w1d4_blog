@@ -9,8 +9,9 @@ import CommentArea from "../Comments/CommentArea";
 // import AxiosClient from "../../fetch/fetch";
 // const client = new AxiosClient()
 import { deletePost } from "../Posts/deletePost";
+import { Link } from "react-router-dom";
 
-const Main = ({postId}) => {
+const Main = ({ postId }) => {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedPost, setSelectedPost] = useState(null);
@@ -54,7 +55,7 @@ const Main = ({postId}) => {
 
   const handleDelete = async (postId) => {
     await deletePost(postId);
-    await fetchPosts()
+    await fetchPosts();
   };
 
   if (isLoading) {
@@ -71,12 +72,12 @@ const Main = ({postId}) => {
           <h3> Post on page: {posts.length} </h3>
         </div>
         <div className="mt-4 mb-4">
-        <ResponsivePagination
-          current={currentPage}
-          total={totalPages}
-          onPageChange={setCurrentPage}
-        />
-      </div>
+          <ResponsivePagination
+            current={currentPage}
+            total={totalPages}
+            onPageChange={setCurrentPage}
+          />
+        </div>
         <div className="container-card row justify-content-between">
           {posts.map((post) => {
             return (
@@ -87,7 +88,12 @@ const Main = ({postId}) => {
                 <p>Categoria: {post.category} </p>
                 <a href={post.content}>Vai alla pagina dell'articolo</a>
                 <p> Tempo di lettura: {post.readTime} min </p>
-                <button onClick={() => handleDelete(post._id)}>Delete</button>
+                <button onClick={() => handleDelete(post._id)}>
+                  Delete post
+                </button>
+                <Link to={`/updatePost/${post._id}`}>
+                  <button> Modifica post</button>
+                </Link>
                 <button
                   onClick={() => {
                     handlePostClick(post._id, "cover");
