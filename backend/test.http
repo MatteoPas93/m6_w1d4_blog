@@ -72,7 +72,7 @@ Content-Type: application/json
 
 ####
 
-DELETE http://localhost:3028/deletePost/65f466abe7a127c700027021
+DELETE http://localhost:3028/deletePost/660674a43539e8e54f4cc0cc
 
 ####
 

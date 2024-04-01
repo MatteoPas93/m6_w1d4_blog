@@ -41,11 +41,11 @@ const CommentArea = ({ postId }) => {
 
   const handleOpenAddComment = () => {
     setShowAddComment(true);
-  }
+  };
 
   const handleCloseAddComment = () => {
     setShowAddComment(false);
-  }
+  };
 
   if (isLoading) {
     return <div> Loading...</div>;
@@ -101,9 +101,8 @@ const CommentArea = ({ postId }) => {
     //       />
     //     </div>
     //   </div>
-  
-    
-    <div className="container-comments">
+
+    <>
       <h3>Comments:</h3>
       <div className="section-comments">
         {comments &&
@@ -116,13 +115,12 @@ const CommentArea = ({ postId }) => {
           ))}
       </div>
       <div>
-      <button onClick={handleOpenAddComment}>Add comment</button>
-    </div>
-    {showAddComment && (
-      <AddCommentForm postId={postId} onClose={handleCloseAddComment} />
-    )}
-    </div>
-
+        <button onClick={handleOpenAddComment}>Add comment</button>
+      </div>
+      {showAddComment && (
+        <AddCommentForm postId={postId} onClose={handleCloseAddComment} />
+      )}
+    </>
   );
 };
 
