@@ -2,10 +2,11 @@ import './App.css';
 // import CreatePostForm from './components/Form/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import HomePage from './pages/homepage';
+import HomePage from './pages/Homepage';
 import Login from './pages/Login';
-import AddPostPage from './pages/addPostPage';
-import UpdateCoverPage from './pages/updateCoverPost';
+import AddPostPage from './pages/AddPostPage';
+import UpdateCoverPage from './pages/UpdateCoverPost';
+import RegistrationUser from './pages/CreateUser';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
    <Route path='/home' element={<HomePage/>} />
    <Route path='/addPost' element={<AddPostPage/>}/>
    <Route path='/updateCover/:id' element={<UpdateCoverPage/>}/>
+   <Route path='/registration' element={<RegistrationUser/>} />
    </Routes>
     </BrowserRouter>
   )

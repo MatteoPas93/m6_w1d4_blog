@@ -3,7 +3,7 @@ const postModel = require("../models/posts");
 
 exports.getComments = async (request, response) => {
   const {id} = request.params
-  const {page = 1, pageSize = 3} = request.query;
+  // const {page = 1, pageSize = 3} = request.query;
   try {
     const post = await postModel.findById(id);
 
@@ -15,9 +15,9 @@ exports.getComments = async (request, response) => {
     }
 
     const comments = await commentModel.find({_id: {$in: post.comments}})
-    .limit(pageSize)
-    .skip((page - 1) * pageSize)
-    .sort({comment: 1})
+    // .limit(pageSize)
+    // .skip((page - 1) * pageSize)
+    // .sort({comment: 1})
 
     if(!comments) {
       return response.status(404).send({
@@ -29,10 +29,10 @@ exports.getComments = async (request, response) => {
     const totalComments = await commentModel.countDocuments()
 
     response.status(200).send({
-      currentPage: page,
-      pageSize,
-      totalePages: Math.ceil(totalComments / pageSize),
-      totalComments: (totalComments),
+      // currentPage: page,
+      // pageSize,
+      // totalePages: Math.ceil(totalComments / pageSize),
+      // totalComments: (totalComments),
       comments,
     });
   } catch (error) {

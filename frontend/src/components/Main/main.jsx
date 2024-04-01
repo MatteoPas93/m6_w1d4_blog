@@ -18,7 +18,6 @@ const Main = () => {
   const [pageSize, setPageSize] = useState(8);
   const [totalPages, setTotalPages] = useState(0);
 
-
   const handlePostClick = (postId, type) => {
     if (type === "cover") {
       setSelectedPost((prevSelectedPost) =>
@@ -93,13 +92,14 @@ const Main = () => {
                   </div>
                 )}
                 <button onClick={() => handlePostClick(post._id, "comment")}>
-                  {/* {selectedPostComment === post._id
+                  {selectedPostComment === post._id
                     ? "Close comments area"
-                    : "Open comments area"} */}{" "}
-                  Open comments area
+                    : "Open comments area"}
                 </button>
                 {selectedPostComment === post._id && (
-                  <CommentArea postId={post._id} />
+                  <div className="container-comments">
+                    <CommentArea postId={post._id} />
+                  </div>
                 )}
               </div>
             );
