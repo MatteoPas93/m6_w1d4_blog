@@ -1,14 +1,12 @@
-import React from 'react'
+import React from "react";
+import SuccessLogin from "../components/SuccessLogin/SuccessLogin";
 
 function SuccessPage() {
-    const params = new URLSearchParams(window.location.search);
-    const token = params.get('token')
   return (
-    <div>
-        <div> SuccessPage</div>
-        <div>
-            Il tuo token: {token}</div> </div>
-  )
+   <>
+   <SuccessLogin/>
+   </>
+  );
 }
 
-export default SuccessPage
+export default SuccessPage;
