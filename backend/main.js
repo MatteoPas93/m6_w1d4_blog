@@ -21,7 +21,8 @@ const cloudRoute = require("./routes/cloudinary");
 const authorAvatarRoute = require('./routes/authors');
 const postCoverRoute = require('./routes/posts');
 const emailRoute = require('./routes/emails');
-const commentRoute = require('./routes/comments')
+const commentRoute = require('./routes/comments');
+const githubRoute = require('./routes/gitHub');
 
 // !Sezione middleware
 
@@ -37,6 +38,7 @@ app.use('/', authorAvatarRoute);
 app.use('/', postCoverRoute);
 app.use('/', emailRoute);
 app.use('/', commentRoute)
+app.use('/', githubRoute);
 
 //! Connessione del Database
 

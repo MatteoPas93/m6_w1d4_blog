@@ -32,6 +32,10 @@ const Login = () => {
         }
     }
 
+    const handleGitHubLogin = () => {
+        window.location.href = `${process.env.REACT_APP_SERVER_BASE_URL}/auth/github`
+    }
+
     return (
         <div className="container">
             <div className="row d-flex justify-content-center">
@@ -88,9 +92,10 @@ const Login = () => {
                             >
                                 Non sei registrato?
                                 <a href="http:" className="text-dark fw-bold ms-1">
-                                    Registrati ora!
+                                    Registrati ora o accedi con:
                                 </a>
                             </div>
+                            <button type='button' className='bg-dark' onClick={handleGitHubLogin}> Git Hub</button>
                         </form>
                     </div>
                 </div>

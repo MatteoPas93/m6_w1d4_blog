@@ -8,12 +8,14 @@ import AddPostPage from './pages/AddPostPage';
 import UpdateCoverPage from './pages/UpdateCoverPost';
 import RegistrationUser from './pages/CreateUser';
 import UpdatePostPage from './pages/UpdatePost';
+import SuccessPage from './pages/SuccessPage';
 
 function App() {
   return (
    <BrowserRouter>
    <Routes>
    <Route exact path='/' element={<Login/>} />
+    <Route path='/success' element={<SuccessPage/>} />
    <Route path='/home' element={<HomePage/>} />
    <Route path='/addPost' element={<AddPostPage/>}/>
    <Route path='/updateCover/:id' element={<UpdateCoverPage/>}/>
