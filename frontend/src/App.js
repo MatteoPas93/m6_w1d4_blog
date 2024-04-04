@@ -3,7 +3,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import HomePage from './pages/Homepage';
-import Login from './pages/Login';
+import LoginPage from './pages/LoginPage';
 import AddPostPage from './pages/AddPostPage';
 import UpdateCoverPage from './pages/UpdateCoverPost';
 import RegistrationUser from './pages/CreateUser';
@@ -14,7 +14,7 @@ function App() {
   return (
    <BrowserRouter>
    <Routes>
-   <Route exact path='/' element={<Login/>} />
+   <Route exact path='/' element={<LoginPage/>} />
     <Route path='/success' element={<SuccessPage/>} />
    <Route path='/home' element={<HomePage/>} />
    <Route path='/addPost' element={<AddPostPage/>}/>

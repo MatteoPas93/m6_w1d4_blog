@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
-import AxiosClient from '../fetch/fetch';
+import AxiosClient from '../../fetch/fetch';
 import {useNavigate} from "react-router-dom";
+import './Login.css';
 
 const Login = () => {
     const client = new AxiosClient()
@@ -19,11 +20,6 @@ const Login = () => {
     const onSubmit = async (e) => {
         e.preventDefault()
         const response = await client.post('/login', formData)
-
-        // if(response.statusCode === 200) {
-        //     localStorage.setItem('auth', JSON.stringify(response.token))
-        // }
-        console.log(response.token)
         if (response.token) {
             localStorage.setItem('auth', JSON.stringify(response.token))
             setTimeout(() => {
@@ -43,7 +39,7 @@ const Login = () => {
                     <h2 className="text-center text-dark mt-5">
                         Epibooks Login
                     </h2>
-                    <div className="card my-5">
+                    <div className="card my-5 w-100">
                         <form
                             onSubmit={onSubmit}
                             className="card-body cardbody-color p-lg-5">
@@ -95,7 +91,8 @@ const Login = () => {
                                     Registrati ora o accedi con:
                                 </a>
                             </div>
-                            <button type='button' className='bg-dark' onClick={handleGitHubLogin}> Git Hub</button>
+                            <button type='button' className='button-github' onClick={handleGitHubLogin}>
+                                <img id='github-img' src="https://tse3.mm.bing.net/th?id=OIP.Sfgbqcg35rCru0YB-IQwxgHaD4&pid=Api&P=0&h=180" /> Git Hub</button>
                         </form>
                     </div>
                 </div>

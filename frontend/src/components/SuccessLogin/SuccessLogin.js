@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import "./successLogin.css"
 
 function SuccessLogin() {
-  const params = new URLSearchParams(window.location.search);
-  const token = params.get("token");
+  // const params = new URLSearchParams(window.location.search);
+  // const token = params.get("token");
   return (
     <div className="container-success">
       <div> Account collegato con successo </div>
