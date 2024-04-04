@@ -92,7 +92,7 @@ const Login = () => {
                                 </a>
                             </div>
                             <button type='button' className='button-github' onClick={handleGitHubLogin}>
-                                <img id='github-img' src="https://tse3.mm.bing.net/th?id=OIP.Sfgbqcg35rCru0YB-IQwxgHaD4&pid=Api&P=0&h=180" /> Git Hub</button>
+                                <img id='github-img' src="https://tse3.mm.bing.net/th?id=OIP.Sfgbqcg35rCru0YB-IQwxgHaD4&pid=Api&P=0&h=180" alt='GitHub' /> Git Hub</button>
                         </form>
                     </div>
                 </div>
