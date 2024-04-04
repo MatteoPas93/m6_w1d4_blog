@@ -8,18 +8,21 @@ import AddPostPage from "./pages/AddPostPage";
 import UpdateCoverPage from "./pages/UpdateCoverPost";
 import RegistrationUser from "./pages/CreateUser";
 import UpdatePostPage from "./pages/UpdatePost";
+// import ProtectedRoutes from "./middleware/ProtectedRoute";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<LoginPage />} />
-        <Route path="/success" element={<Navigate to="/home" />} />
-        <Route path="/home" element={<HomePage />} />
-        <Route path="/addPost" element={<AddPostPage />} />
-        <Route path="/updateCover/:id" element={<UpdateCoverPage />} />
         <Route path="/registration" element={<RegistrationUser />} />
-        <Route path="/updatePost/:id" element={<UpdatePostPage />} />
+        {/* <Route element={<ProtectedRoutes />}> */}
+          <Route path="/success" element={<Navigate to="/home" />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/addPost" element={<AddPostPage />} />
+          <Route path="/updateCover/:id" element={<UpdateCoverPage />} />
+          <Route path="/updatePost/:id" element={<UpdatePostPage />} />
+        {/* </Route> */}
       </Routes>
     </BrowserRouter>
   );
