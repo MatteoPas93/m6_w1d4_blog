@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import AxiosClient from '../../fetch/fetch';
 import {useNavigate} from "react-router-dom";
 import './Login.css';
+// import { isAuthorized } from '../../middleware/ProtectedRoute';
 
 const Login = () => {
     const client = new AxiosClient()
@@ -23,7 +24,9 @@ const Login = () => {
         if (response.token) {
             localStorage.setItem('auth', JSON.stringify(response.token))
             setTimeout(() => {
+                // if(isAuthorized()) {
                 navigate('/home')
+            // }
             },1500)
         }
     }
