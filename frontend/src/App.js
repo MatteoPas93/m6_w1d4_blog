@@ -8,7 +8,7 @@ import AddPostPage from "./pages/AddPostPage";
 import UpdateCoverPage from "./pages/UpdateCoverPost";
 import RegistrationUser from "./pages/CreateUser";
 import UpdatePostPage from "./pages/UpdatePost";
-import ProtectedRoutes from "./middleware/ProtectedRoute";
+// import ProtectedRoutes from "./middleware/ProtectedRoute";
 
 function App() {
   return (
@@ -16,13 +16,13 @@ function App() {
       <Routes>
         <Route exact path="/" element={<LoginPage />} />
         <Route path="/registration" element={<RegistrationUser />} />
-        <Route element={<ProtectedRoutes />}>
+        {/* <Route element={<ProtectedRoutes />}> */}
           <Route path="/success" element={<Navigate to="/home" />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/addPost" element={<AddPostPage />} />
           <Route path="/updateCover/:id" element={<UpdateCoverPage />} />
           <Route path="/updatePost/:id" element={<UpdatePostPage />} />
-        </Route>
+        {/* </Route> */}
       </Routes>
     </BrowserRouter>
   );
