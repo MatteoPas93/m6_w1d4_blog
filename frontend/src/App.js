@@ -21,7 +21,7 @@ function App() {
           <Route path="/home" element={<HomePage />} />
           <Route path="/addPost" element={<AddPostPage />} />
           <Route path="/updateCover/:id" element={<UpdateCoverPage />} />
-          <Route path="/updatePost/:id" element={<UpdatePostPage />} />
+          <Route path="/updatePost/:postId" element={<UpdatePostPage />} />
         {/* </Route> */}
       </Routes>
     </BrowserRouter>

@@ -10,45 +10,33 @@ const UpdatePostForm = ({ postId, onUpdate }) => {
     readTime: "",
     author: {
       name: "",
-      avatar: "",
     },
     content: "",
-    comments: []
+    comments: [],
   });
 
-  const fetchPost = async () => {
+  const fetchPost = async ({ postId }) => {
     try {
       const response = await axios.get(
         `${process.env.REACT_APP_SERVER_BASE_URL}/getPost/${postId}`
       );
-      const {category, title, cover, readTime, author, content, comments} = response.data
-      setFormData({
-          category,
-          title,
-          cover,
-          readTime,
-          author: {
-            name: author.name,
-            avatar: author.avatar
-          },
-          content,
-          comments
-        })
+      const postData = response.data;
+      setFormData(postData);
     } catch (error) {
       console.error("Error fetching post", error);
     }
   };
 
   useEffect(() => {
-    fetchPost();
+    fetchPost(postId);
   }, [postId]);
 
   const handleChange = (event) => {
-    const {name, value} = event.target;
-    setFormData({
-      ...formData,
+    const { name, value } = event.target;
+    setFormData((prevState) => ({
+      ...prevState,
       [name]: value,
-    });
+    }));
   };
 
   const handleSubmit = async (event) => {
@@ -126,21 +114,6 @@ const UpdatePostForm = ({ postId, onUpdate }) => {
             onChange={handleChange}
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-        </Form.Group>
-        <Form.Group as={Col} md="4" controlId="validationCustomCover">
-          <Form.Label>Avatar</Form.Label>
-          <InputGroup hasValidation>
-            <InputGroup.Text id="inputGroupPrepend"></InputGroup.Text>
-            <Form.Control
-              name="avatar"
-              type="text"
-              placeholder="Avatar"
-              value={formData.author.avatar}
-              onChange={handleChange}
-              aria-describedby="inputGroupPrepend"
-              required
-            />
-          </InputGroup>
         </Form.Group>
         <Form.Group as={Col} md="4" controlId="validationCustom02">
           <Form.Label>Content</Form.Label>
