@@ -20,6 +20,7 @@ const UpdatePostForm = ({ postId, onUpdate }) => {
       const response = await axios.get(
         `${process.env.REACT_APP_SERVER_BASE_URL}/getPost/${postId}`
       );
+      
       const postData = response.data;
       setFormData(postData);
     } catch (error) {
