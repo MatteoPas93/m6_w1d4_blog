@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-// import ResponsivePagination from "react-responsive-pagination";
-// import "react-responsive-pagination/themes/classic.css";
-// import { Button, Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./comments.css";
 import AddCommentForm from "../Form/FormAddComment";
@@ -11,19 +8,25 @@ const CommentArea = ({ postId }) => {
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showAddComment, setShowAddComment] = useState(false);
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [pageSize, setPageSize] = useState(3);
-  // const [totalPages, setTotalPages] = useState(0);
-  // const [showModal, setShowModal] = useState(false);
 
+  // ! GET request to get comments related to a specific post.
   const fetchComments = async () => {
     try {
       const response = await axios.get(
         `${process.env.REACT_APP_SERVER_BASE_URL}/blogPosts/${postId}/comments`
       );
+      if (response.status === 404) {
+        console.error("Comments not Found", response.data);
+        return;
+      }
+      if (response.status === 401) {
+        console.error("No authorization", response.data);
+        return;
+      }
+      if (response.status === 500) {
+        console.error("Internal Server Error", response.data);
+      }
       setComments(response.data.comments);
-      console.log(response.data);
-      // setTotalPages(response.data.totalPages);
       setIsLoading(false);
     } catch (error) {
       console.error("Error fetching comments", error);
@@ -33,11 +36,8 @@ const CommentArea = ({ postId }) => {
   useEffect(() => {
     fetchComments();
   }, [postId]);
-  // , currentPage, pageSize
 
-  // const handleCloseModal = () => {
-  //   setShowModal(false);
-  // };
+  // ! Management of opening and closing of the div containing the comments.
 
   const handleOpenAddComment = () => {
     setShowAddComment(true);
@@ -50,6 +50,8 @@ const CommentArea = ({ postId }) => {
   if (isLoading) {
     return <div> Loading...</div>;
   }
+
+  // ! If comments does not exist or has a length equal to zero, only a message is shown, otherwise it returns the comments with the possibility of adding others.
   if (!Array.isArray(comments) || comments.length === 0) {
     return (
       <div>
@@ -65,43 +67,6 @@ const CommentArea = ({ postId }) => {
   }
 
   return (
-    // <div
-    //   className="modal show"
-    //   style={{ display: "block", position: "initial" }}
-    // >
-
-    //     <div className="section-comments">
-    //       <Modal show={showModal} onHide={handleCloseModal}>
-    //         <Modal.Header>
-    //           <Modal.Title>Comments</Modal.Title>
-    //         </Modal.Header>
-    //         <Modal.Body>
-    //           {comments &&
-    //             comments.map((comment, index) => (
-    //               <div key={index}>
-    //                 <h5> {comment.user} </h5>
-    //                 <p> {comment.comment} </p>
-    //                 <p> {comment.date} </p>
-    //               </div>
-    //             ))}
-    //         </Modal.Body>
-    //         <Modal.Footer>
-    //           <Button variant="secondary" onClick={handleCloseModal}>
-    //             Close
-    //           </Button>
-    //           <Button variant="primary">Add comment</Button>
-    //         </Modal.Footer>
-    //       </Modal>
-    //     </div>
-    //     <div className="mt-4">
-    //       <ResponsivePagination
-    //         current={currentPage}
-    //         total={totalPages}
-    //         onPageChange={setCurrentPage}
-    //       />
-    //     </div>
-    //   </div>
-
     <>
       <h3>Comments:</h3>
       <div className="section-comments">

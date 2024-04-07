@@ -4,6 +4,7 @@ import axios from "axios";
 
 const RegistrationForm = () => {
   const [validated, setValidated] = useState(false);
+   // ! Creating the formData model.
   const [formData, setFormData] = useState({
     name: "",
     surname: "",
@@ -13,6 +14,7 @@ const RegistrationForm = () => {
     avatar: "",
   });
 
+  // ! POST request to create a new user.
   const handleSubmit = async (event) => {
     event.preventDefault();
     const form = event.currentTarget;
@@ -20,10 +22,21 @@ const RegistrationForm = () => {
       event.stopPropagation();
     } else {
       try {
-        await axios.post(
+       const response =  await axios.post(
           `${process.env.REACT_APP_SERVER_BASE_URL}/createAuthor`,
           formData
         );
+        if (response.status === 404) {
+          console.error("Page not Found", response.data);
+          return;
+        }
+        if (response.status === 401) {
+          console.error("No authorization", response.data);
+          return;
+        }
+        if (response.status === 500) {
+          console.error("Internal Server Error", response.data);
+        }
       } catch (error) {
         console.error(error);
       }
@@ -33,6 +46,7 @@ const RegistrationForm = () => {
   };
 
   const handleChange = (event) => {
+    // ! I extract the name and value properties from the event.target object.
     const { name, value } = event.target;
     setFormData({
       ...formData,

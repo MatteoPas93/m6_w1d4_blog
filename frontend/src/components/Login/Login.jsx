@@ -10,17 +10,28 @@ const Login = () => {
 
     const navigate = useNavigate()
 
-    const onChangeInput = (e) => {
-        const {name, value} = e.target
+    const onChangeInput = (event) => {
+        const {name, value} = event.target
         setFormData({
             ...formData,
             [name]: value
         })
     }
 
-    const onSubmit = async (e) => {
-        e.preventDefault()
+    const onSubmit = async (event) => {
+        event.preventDefault()
         const response = await client.post('/login', formData)
+        if (response.status === 404) {
+            console.error("Page not Found", response.data);
+            return;
+          }
+          if (response.status === 401) {
+            console.error("No authorization", response.data);
+            return;
+          }
+          if (response.status === 500) {
+            console.error("Internal Server Error", response.data);
+          }
         if (response.token) {
             localStorage.setItem('auth', JSON.stringify(response.token))
             setTimeout(() => {

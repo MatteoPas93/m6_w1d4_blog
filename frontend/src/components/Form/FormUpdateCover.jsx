@@ -8,6 +8,7 @@ const UpdateCoverForm = ({ postId, onUpdateCover }) => {
     cover: "",
   });
 
+  // ! PATCH request to change the cover of a specific post.
   const handleSubmit = async (event) => {
     event.preventDefault();
     const form = event.currentTarget;
@@ -15,10 +16,21 @@ const UpdateCoverForm = ({ postId, onUpdateCover }) => {
       event.stopPropagation();
     } else {
       try {
-        await axios.patch(
+       const response =  await axios.patch(
           `${process.env.REACT_APP_SERVER_BASE_URL}/posts/${postId}/cover`,
           formData
         );
+        if (response.status === 404) {
+          console.error("Post not Found", response.data);
+          return;
+        }
+        if (response.status === 401) {
+          console.error("No authorization", response.data);
+          return;
+        }
+        if (response.status === 500) {
+          console.error("Internal Server Error", response.data);
+        }
         onUpdateCover(postId)
       } catch (error) {
         console.error(error);

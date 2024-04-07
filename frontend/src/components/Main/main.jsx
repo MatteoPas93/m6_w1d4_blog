@@ -6,8 +6,6 @@ import UpdateCoverForm from "../Form/FormUpdateCover";
 import ResponsivePagination from "react-responsive-pagination";
 import "react-responsive-pagination/themes/classic.css";
 import CommentArea from "../Comments/CommentArea";
-// import AxiosClient from "../../fetch/fetch";
-// const client = new AxiosClient()
 import { deletePost } from "../Posts/deletePost";
 import { Link } from "react-router-dom";
 
@@ -20,6 +18,8 @@ const Main = ({ postId }) => {
   const [pageSize, setPageSize] = useState(8);
   const [totalPages, setTotalPages] = useState(0);
 
+
+  // ! Using the function by type.
   const handlePostClick = (postId, type) => {
     if (type === "cover") {
       setSelectedPost((prevSelectedPost) =>
@@ -31,11 +31,24 @@ const Main = ({ postId }) => {
       );
     }
   };
+
+  // ! GET request for posts.
   const fetchPosts = async () => {
     try {
       const response = await axios.get(
         `${process.env.REACT_APP_SERVER_BASE_URL}/getPosts?page=${currentPage}&pageSize=${pageSize}`
       );
+      if (response.status === 404) {
+        console.error("Page not Found", response.data);
+        return;
+      }
+      if (response.status === 401) {
+        console.error("No authorization", response.data);
+        return;
+      }
+      if (response.status === 500) {
+        console.error("Internal Server Error", response.data);
+      }
       setPosts(response.data.posts);
       setTotalPages(response.data.totalPages);
       setIsLoading(false);

@@ -3,6 +3,7 @@ import axios from "axios";
 import { Form, Row, Col, Button } from "react-bootstrap";
 
 const UpdatePostForm = ({ postId }) => {
+  // !I create the formData model.
   const [formData, setFormData] = useState({
     category: "",
     title: "",
@@ -10,18 +11,30 @@ const UpdatePostForm = ({ postId }) => {
     readTime: "",
     author: {
       name: "",
-      avatar: ""
+      avatar: "",
     },
     content: "",
     comments: [],
   });
 
+  // !Function for requesting GET of specific post.
   const fetchPost = async ({ postId }) => {
     try {
       const response = await axios.get(
         `${process.env.REACT_APP_SERVER_BASE_URL}/getPost/${postId}`
       );
-      
+      if (response.status === 404) {
+        console.error("Post not Found", response.data);
+        return;
+      }
+      if (response.status === 401) {
+        console.error("No authorization", response.data);
+        return;
+      }
+      if (response.status === 500) {
+        console.error("Internal Server Error", response.data);
+      }
+
       const postData = response.data;
       setFormData(postData);
     } catch (error) {
@@ -34,34 +47,45 @@ const UpdatePostForm = ({ postId }) => {
   }, [postId]);
 
   const handleChange = (event) => {
+    // ! I extract the name and value properties from the event.target object.
     const { name, value } = event.target;
+    // ! Having to update the author sub-object, I check if the element name begins with author.
     if (name.startsWith("author.")) {
       setFormData((prevState) => ({
         ...prevState,
         author: {
           ...prevState.author,
-          [name.split(".")[1]]: value
-        }
+          [name.split(".")[1]]: value,
+        },
       }));
-      console.log(event.target);
     } else {
       setFormData((prevState) => ({
         ...prevState,
         [name]: value,
-      }))
+      }));
     }
-    console.log(event.target);
   };
 
+  // ! Function with PATCH request for editing the post upon clicking submit.
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(formData);
     try {
-      const postIdValue = formData._id
-      await axios.patch(
+      const postIdValue = formData._id;
+      const response = await axios.patch(
         `${process.env.REACT_APP_SERVER_BASE_URL}/updatePost/${postIdValue}`,
         formData
       );
+      if (response.status === 404) {
+        console.error("Post not Found", response.data);
+        return;
+      }
+      if (response.status === 401) {
+        console.error("No authorization", response.data);
+        return;
+      }
+      if (response.status === 500) {
+        console.error("Internal Server Error", response.data);
+      }
     } catch (error) {
       console.error("Error updating post", error);
     }

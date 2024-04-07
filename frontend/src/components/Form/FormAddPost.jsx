@@ -8,6 +8,7 @@ import axios from "axios";
 
 function CreatePostForm() {
   const [validated, setValidated] = useState(false);
+  // ! Creating the formData model.
   const [formData, setFormData] = useState({
     title: "",
     author: {
@@ -19,6 +20,7 @@ function CreatePostForm() {
     content: "",
   });
 
+  // ! POST request for creating a new post.
   const handleSubmit = async (event) => {
     event.preventDefault();
     const form = event.currentTarget;
@@ -26,10 +28,21 @@ function CreatePostForm() {
       event.stopPropagation();
     } else {
       try {
-        await axios.post(
+        const response = await axios.post(
           `${process.env.REACT_APP_SERVER_BASE_URL}/createPost`,
           formData
         );
+        if (response.status === 404) {
+          console.error("Post not Found", response.data);
+          return;
+        }
+        if (response.status === 401) {
+          console.error("No authorization", response.data);
+          return;
+        }
+        if (response.status === 500) {
+          console.error("Internal Server Error", response.data);
+        }
       } catch (error) {
         console.error(error);
       }
@@ -39,8 +52,10 @@ function CreatePostForm() {
   };
 
   const handleChange = (event) => {
+    // ! I extract the name and value properties from the event.target object.
     const { name, value } = event.target;
 
+    // !Controllo se il campo di input è relativo all'autore.
     if (name === "author") {
       setFormData({
         ...formData,
@@ -58,7 +73,6 @@ function CreatePostForm() {
   };
 
   return (
-    
     <Form noValidate validated={validated} onSubmit={handleSubmit}>
       <Row className="mb-3 flex-column ml-1">
         <Form.Group as={Col} md="4" controlId="validationCustom01">
@@ -139,9 +153,10 @@ function CreatePostForm() {
           feedbackType="invalid"
         />
       </Form.Group>
-      <Button className="ml-3" type="submit">Submit form</Button>
+      <Button className="ml-3" type="submit">
+        Submit form
+      </Button>
     </Form>
-    
   );
 }
 

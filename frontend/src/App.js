@@ -1,5 +1,4 @@
 import "./App.css";
-// import CreatePostForm from './components/Form/Form';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import HomePage from "./pages/Homepage";
@@ -17,11 +16,11 @@ function App() {
         <Route exact path="/" element={<LoginPage />} />
         <Route path="/registration" element={<RegistrationUser />} />
         {/* <Route element={<ProtectedRoutes />}> */}
-          <Route path="/success" element={<Navigate to="/home" />} />
-          <Route path="/home" element={<HomePage />} />
-          <Route path="/addPost" element={<AddPostPage />} />
-          <Route path="/updateCover/:id" element={<UpdateCoverPage />} />
-          <Route path="/updatePost/:postId" element={<UpdatePostPage />} />
+        <Route path="/success" element={<Navigate to="/home" />} />
+        <Route path="/home" element={<HomePage />} />
+        <Route path="/addPost" element={<AddPostPage />} />
+        <Route path="/updateCover/:id" element={<UpdateCoverPage />} />
+        <Route path="/updatePost/:postId" element={<UpdatePostPage />} />
         {/* </Route> */}
       </Routes>
     </BrowserRouter>
