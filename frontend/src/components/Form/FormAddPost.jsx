@@ -4,12 +4,9 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Row from "react-bootstrap/Row";
-// import { createPost } from '../../redux/posts/postSlice';
-// import { useDispatch } from 'react-redux';
 import axios from "axios";
 
 function CreatePostForm() {
-  // const dispatch = useDispatch();
   const [validated, setValidated] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
@@ -28,7 +25,6 @@ function CreatePostForm() {
     if (form.checkValidity() === false) {
       event.stopPropagation();
     } else {
-      // dispatch(createPost(formData))
       try {
         await axios.post(
           `${process.env.REACT_APP_SERVER_BASE_URL}/createPost`,

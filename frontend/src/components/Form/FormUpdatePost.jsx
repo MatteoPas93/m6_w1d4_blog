@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Form, InputGroup, Row, Col, Button } from "react-bootstrap";
+import { Form, Row, Col, Button } from "react-bootstrap";
 
-const UpdatePostForm = ({ postId, onUpdate }) => {
+const UpdatePostForm = ({ postId }) => {
   const [formData, setFormData] = useState({
     category: "",
     title: "",
@@ -10,6 +10,7 @@ const UpdatePostForm = ({ postId, onUpdate }) => {
     readTime: "",
     author: {
       name: "",
+      avatar: ""
     },
     content: "",
     comments: [],
@@ -34,20 +35,33 @@ const UpdatePostForm = ({ postId, onUpdate }) => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+    if (name.startsWith("author.")) {
+      setFormData((prevState) => ({
+        ...prevState,
+        author: {
+          ...prevState.author,
+          [name.split(".")[1]]: value
+        }
+      }));
+      console.log(event.target);
+    } else {
+      setFormData((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }))
+    }
+    console.log(event.target);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log(formData);
     try {
+      const postIdValue = formData._id
       await axios.patch(
-        `${process.env.REACT_APP_SERVER_BASE_URL}/updatePost/${postId}`,
+        `${process.env.REACT_APP_SERVER_BASE_URL}/updatePost/${postIdValue}`,
         formData
       );
-      onUpdate();
     } catch (error) {
       console.error("Error updating post", error);
     }
@@ -62,7 +76,6 @@ const UpdatePostForm = ({ postId, onUpdate }) => {
             name="category"
             required
             type="text"
-            // placeholder="Category"
             value={formData.category}
             onChange={handleChange}
           />
@@ -74,7 +87,6 @@ const UpdatePostForm = ({ postId, onUpdate }) => {
             name="title"
             required
             type="text"
-            // placeholder="Title"
             value={formData.title}
             onChange={handleChange}
           />
@@ -86,7 +98,6 @@ const UpdatePostForm = ({ postId, onUpdate }) => {
             name="cover"
             required
             type="text"
-            // placeholder="Cover"
             value={formData.cover}
             onChange={handleChange}
           />
@@ -98,7 +109,6 @@ const UpdatePostForm = ({ postId, onUpdate }) => {
             name="readTime"
             required
             type="number"
-            // placeholder="Read Time"
             value={formData.readTime}
             onChange={handleChange}
           />
@@ -107,22 +117,31 @@ const UpdatePostForm = ({ postId, onUpdate }) => {
         <Form.Group as={Col} md="4" controlId="validationCustom05">
           <Form.Label>Name</Form.Label>
           <Form.Control
-            name="name"
+            name="author.name"
             required
             type="text"
-            // placeholder="Name"
             value={formData.author.name}
             onChange={handleChange}
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
         </Form.Group>
-        <Form.Group as={Col} md="4" controlId="validationCustom02">
+        <Form.Group as={Col} md="4" controlId="validationCustom06">
+          <Form.Label>Avatar</Form.Label>
+          <Form.Control
+            name="author.avatar"
+            required
+            type="text"
+            value={formData.author.avatar}
+            onChange={handleChange}
+          />
+          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+        </Form.Group>
+        <Form.Group as={Col} md="4" controlId="validationCustom07">
           <Form.Label>Content</Form.Label>
           <Form.Control
             name="content"
             required
             type="text"
-            // placeholder="content"
             value={formData.content}
             onChange={handleChange}
           />

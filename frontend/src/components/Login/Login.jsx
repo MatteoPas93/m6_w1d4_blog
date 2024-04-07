@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
 import AxiosClient from '../../fetch/fetch';
 import {useNavigate} from "react-router-dom";
+import { Link } from 'react-router-dom';
 import './Login.css';
-// import { isAuthorized } from '../../middleware/ProtectedRoute';
 
 const Login = () => {
     const client = new AxiosClient()
@@ -24,9 +24,7 @@ const Login = () => {
         if (response.token) {
             localStorage.setItem('auth', JSON.stringify(response.token))
             setTimeout(() => {
-                // if(isAuthorized()) {
                 navigate('/home')
-            // }
             },1500)
         }
     }
@@ -90,9 +88,7 @@ const Login = () => {
                                 className="form-text text-center mb-5 text-dark"
                             >
                                 Non sei registrato?
-                                <a href="http:" className="text-dark fw-bold ms-1">
-                                    Registrati ora o accedi con:
-                                </a>
+                                <Link as={Link} to={'/registration'}>Registrati ora</Link>
                             </div>
                             <button type='button' className='button-github' onClick={handleGitHubLogin}>
                                 <img id='github-img' src="https://tse3.mm.bing.net/th?id=OIP.Sfgbqcg35rCru0YB-IQwxgHaD4&pid=Api&P=0&h=180" alt='GitHub' /> Git Hub</button>

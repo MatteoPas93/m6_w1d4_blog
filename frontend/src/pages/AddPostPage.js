@@ -1,5 +1,5 @@
 import NavigationBar from "../components/Nav/nav";
-import CreatePostForm from "../components/Form/Form";
+import CreatePostForm from "../components/Form/FormAddPost";
 
 const AddPostPage = () => {
   return (
