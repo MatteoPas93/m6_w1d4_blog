@@ -5,8 +5,11 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Row from "react-bootstrap/Row";
 import axios from "axios";
+import {useNavigate} from "react-router-dom"
 
 function CreatePostForm() {
+  const navigate = useNavigate();
+
   const [validated, setValidated] = useState(false);
   // ! Creating the formData model.
   const [formData, setFormData] = useState({
@@ -70,6 +73,12 @@ function CreatePostForm() {
         [name]: value,
       });
     }
+  };
+
+  const navigateHome = () => {
+    setTimeout(() => {
+      navigate("/home");
+    }, 1000);
   };
 
   return (
@@ -153,7 +162,7 @@ function CreatePostForm() {
           feedbackType="invalid"
         />
       </Form.Group>
-      <Button className="ml-3" type="submit">
+      <Button className="ml-3" type="submit" onClick={navigateHome}>
         Submit form
       </Button>
     </Form>
