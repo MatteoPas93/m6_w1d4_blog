@@ -18,7 +18,6 @@ const Main = ({ postId }) => {
   const [pageSize, setPageSize] = useState(8);
   const [totalPages, setTotalPages] = useState(0);
 
-
   // ! Using the function by type.
   const handlePostClick = (postId, type) => {
     if (type === "cover") {

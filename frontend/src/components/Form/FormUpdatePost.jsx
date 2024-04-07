@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Form, Row, Col, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const UpdatePostForm = ({ postId }) => {
+  const navigate = useNavigate();
   // !I create the formData model.
   const [formData, setFormData] = useState({
     category: "",
@@ -89,6 +91,12 @@ const UpdatePostForm = ({ postId }) => {
     } catch (error) {
       console.error("Error updating post", error);
     }
+  };
+
+  const navigateHome = () => {
+    setTimeout(() => {
+      navigate("/home");
+    }, 1000);
   };
 
   return (
@@ -180,7 +188,7 @@ const UpdatePostForm = ({ postId }) => {
           feedbackType="invalid"
         />
       </Form.Group>
-      <Button className="ml-3" type="submit">
+      <Button className="ml-3" type="submit" onClick={navigateHome}>
         Submit form
       </Button>
     </Form>
